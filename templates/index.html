@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predicción de Supervivencia - Titanic</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+        <h2>Predicción de Supervivencia - Titanic</h2>
+
+        <form action="/predict" method="post">
+            <label for="pclass">Clase del pasajero:</label>
+            <select name="pclass" id="pclass" required>
+                <option value="1">Primera Clase</option>
+                <option value="2">Segunda Clase</option>
+                <option value="3">Tercera Clase</option>
+            </select>
+
+            <label for="sex">Sexo:</label>
+            <select name="sex" id="sex" required>
+                <option value="0">Femenino</option>
+                <option value="1">Masculino</option>
+            </select>
+
+            <label for="age">Edad:</label>
+            <input type="number" step="0.1" name="age" id="age" required>
+
+            <label for="fare">Tarifa del boleto:</label>
+            <input type="number" step="0.01" name="fare" id="fare" required>
+
+            <label for="embarked">Puerto de embarque:</label>
+            <select name="embarked" id="embarked" required>
+                <option value="0">Cherbourg</option>
+                <option value="1">Queenstown</option>
+                <option value="2">Southampton</option>
+            </select>
+
+            <label for="alone">¿Viajaba solo?</label>
+            <select name="alone" id="alone" required>
+                <option value="0">No</option>
+                <option value="1">Sí</option>
+            </select>
+
+            <button type="submit">Predecir Supervivencia</button>
+        </form>
+
+        {% if result %}
+            <div class="result">
+                <p>Resultado: {{ result }}</p>
+            </div>
+        {% endif %}
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
